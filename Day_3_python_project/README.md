@@ -54,4 +54,4 @@ Your task is to guess the correct numbers and escape the prison!
 Install required dependencies:
 
 ```bash
-pip install pyfiglet colorama
+pip install pyfiglet colorama random
