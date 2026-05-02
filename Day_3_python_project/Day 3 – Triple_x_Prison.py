@@ -28,9 +28,9 @@ print("""
 while level <= 5:
     print(f"\nLEVEL = ",level)
 
-    num1 = random.randint(1,5)
-    num2 = random.randint(1,5)
-    num3 = random.randint(1,5)
+    num1 = random.randint(level,level+4)
+    num2 = random.randint(level,level+4)
+    num3 = random.randint(level,level+4)
 
     total = num1 + num2 + num3
     product = num1 * num2 * num3
@@ -58,6 +58,23 @@ while level <= 5:
         int(user_input[0]) * int(user_input[1]) * int(user_input[2]) == product):
 
         print(">> PASSWORD CRACKED SUCCESSFULLY ✔️ \n".upper())
+
+        if level == 1:
+            print("✔️ Level 1 cracked... The first door has fallen. The prison is watching you now.")
+            print("🔐 Security alert: Low-level breach detected.")
+        elif level == 2:
+            print("✔️ Second lock broken! You're getting smarter... or the system is getting weaker.")
+            print("⚠️ Warning: Intruder adapting to security pattern.")
+        elif level == 3:
+            print("✔️ Level 3 cleared. The prison AI is now recalculating your threat level...")
+            print("🧠 SYSTEM NOTICE: Subject showing high decoding capability.")
+        elif level == 4:
+            print("✔️ Level 4 breached! Only one door stands between freedom and failure.")
+            print("🚨 MAX SECURITY MODE ACTIVATED.")
+        elif level == 5:
+            print("✔️ FINAL LOCK CRACKED!")
+            print("🏃 Prison collapse initiated... escape route unlocked!")
+            print("🎉 YOU ARE FREE!")
         level += 1
         attempt = 3
         if level > 5:
@@ -65,9 +82,9 @@ while level <= 5:
    ╔═══════════════════════════╗
    ║ ||  ||  ||  ||  ||  ||  ║
    ║ ||  ||  ||  ||  ||  ||  ║
-   ║                           
-   ║      CODE CRACKED!        
-   ║     YOU ARE FREE 🔓       
+   ║
+   ║      CODE CRACKED!
+   ║     YOU ARE FREE 🔓
    ║                           ║
    ╚═══════════════════════════╝
 
