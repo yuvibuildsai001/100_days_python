@@ -1,11 +1,29 @@
 import random
-
+from datetime import time
 from pyfiglet import figlet_format
-from colorama import Fore, Style
+from colorama import init, Fore, Style 
+import time
+import sys 
+
+init()
 
 title = figlet_format("TRIPLE - X - PRISION ", font="small")
 
 print(Fore.RED + title + Style.RESET_ALL)
+
+def game_loading():
+    print("⚡ Initializing Game Engine...\n")
+    
+    for i in range(101):
+        bar = "█" * (i // 2) + "-" * (50 - i // 2)
+        sys.stdout.write(f"\r[{bar}] {i}%")
+        sys.stdout.flush()
+        time.sleep(0.02)
+    
+    print("\n")
+
+# Run
+game_loading()
 
 level = 1
 attempt = 3
@@ -24,6 +42,8 @@ print("""
    ║ ||  ||  ||  ||  ||  ||  ║
    ╚═══════════════════════════╝
 """)
+def clear_screen():
+    print("\033c", end="")
 
 while level <= 5:
     print(f"\nLEVEL = ",level)
@@ -57,20 +77,62 @@ while level <= 5:
     if (int(user_input[0]) + int(user_input[1]) + int(user_input[2]) == total and
         int(user_input[0]) * int(user_input[1]) * int(user_input[2]) == product):
 
+        clear_screen()
+
         print(">> PASSWORD CRACKED SUCCESSFULLY ✔️ \n".upper())
 
         if level == 1:
             print("✔️ Level 1 cracked... The first door has fallen. The prison is watching you now.")
             print("🔐 Security alert: Low-level breach detected.")
+            print("""
++-----------------------+
+| +-------------------+ |
+| | +---------------+ | |
+| | | +-----------+ | | |
+| | | | ( •_• )  | | | |
+| | | | /|   |\\  | | | |
+| | | | /     \\  | | | |
+| | | +-----------+ | | |
+| | +---------------+ | |
+| +-------------------+ |
++-----------------------+
+""")
         elif level == 2:
             print("✔️ Second lock broken! You're getting smarter... or the system is getting weaker.")
             print("⚠️ Warning: Intruder adapting to security pattern.")
+            print("""
+  +-------------------+
+  | +---------------+ |
+  | | +-----------+ | |
+  | | | ( •_• )  | | |
+  | | | /|   |\\  | | |
+  | | | /     \\  | | |
+  | | +-----------+ | |
+  | +---------------+ |
+  +-------------------+
+""")
         elif level == 3:
             print("✔️ Level 3 cleared. The prison AI is now recalculating your threat level...")
             print("🧠 SYSTEM NOTICE: Subject showing high decoding capability.")
+            print("""
+    +---------------+
+    | +-----------+ |
+    | | ( •_• )  | |
+    | | /|   |\\  | |
+    | | /     \\  | |
+    | +-----------+ |
+    +---------------+
+""")
         elif level == 4:
             print("✔️ Level 4 breached! Only one door stands between freedom and failure.")
             print("🚨 MAX SECURITY MODE ACTIVATED.")
+            print("""
+      +-----------+
+      | ( •_• )  |
+      | /|   |\\  |
+      | /     \\  |
+      +-----------+
+""")
         elif level == 5:
             print("✔️ FINAL LOCK CRACKED!")
             print("🏃 Prison collapse initiated... escape route unlocked!")
@@ -105,26 +167,57 @@ while level <= 5:
 """)
 
     else:
+        clear_screen()
         print("wrong Password!❌ Please Try Again\n".upper())
         attempt -= 1
-        print(f"You have {attempt} Attempt left\n".upper())
-
-        if attempt == 0:
+        def show_attempts(attempts):
+            print("\n╔══════════════════╗")
+            print("║  ATTEMPTS LEFT   ║")
+            print("║ ", "💀 " * (3 - attempts) + "❤️ " * attempts, "║")
+            print("╚══════════════════╝")
+        show_attempts(attempt)
+        if attempt == 2:
+            print("""
++---------------------------+
+|                           |
+|        ( •_• )            |
+|        /|   |\            |
+|        /     \            |
+|                           |
+|   👮                     |
+|  /|\\                    |
+|  / \\                    |
+|                           |
+|   A guard noticed you...  |
++---------------------------+
+""")
+        elif attempt == 1:
+            print("""
++---------------------------+
+|                           |
+|        ( •_• )            |
+|        /|   |\            |
+|        /     \            |
+|                           |
+|        👮                |
+|       /|\\               |
+|       / \\               |
+|                           |
+|   Guard is approaching... |
++---------------------------+
+""")
+        elif attempt == 0:
             print(Fore.RED + "💀 GAME OVER\n" + Style.RESET_ALL)
             print(Fore.YELLOW + "You are permanently locked in the jail!".upper() + Style.RESET_ALL)
             print("""
-   ╔═══════════════════════════╗
-   ║ ||  ||  ||  ||  ||  ||  ║
-   ║ ||  ||  ||  ||  ||  ||  ║
-   ║                           ║
-   ║         ( x_x )           ║
-   ║         /|   |\\          ║
-   ║         /     \\          ║
-   ║       GAME OVER...        ║
-   ║     YOU ARE LOCKED 🔒     ║
-   ║                           ║
-   ║ ||  ||  ||  ||  ||  ||  ║
-   ║ ||  ||  ||  ||  ||  ||  ║
-   ╚═══════════════════════════╝
++---------------------------+
+|                           |
+|     👮   ( •_• )          |
+|    /|\\  /|   |\         |
+|    / \\  /     \         |
+|                           |
+|   🚨 YOU ARE CAUGHT! 🚨   |
+|                           |
++---------------------------+
 """)
             break
